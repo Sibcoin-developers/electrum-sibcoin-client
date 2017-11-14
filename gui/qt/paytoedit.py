@@ -245,7 +245,7 @@ class PayToEdit(ScanQRTextEdit):
 
     def qr_input(self):
         data = super(PayToEdit,self).qr_input()
-        if data.startswith("dash:"):
+        if data.startswith("sib:"):
             self.scan_f(data)
             # TODO: update fee
 

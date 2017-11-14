@@ -42,9 +42,9 @@ import x11_hash
 # You may also need to remove the 'server' option from your config file.
 # Otherwise, you may end up getting headers for the wrong chain!
 TESTNET = False
-PUBKEY_ADDR = 140 if TESTNET else 76
-SCRIPT_ADDR = 19 if TESTNET else 16
-WIF = 239 if TESTNET else 204
+PUBKEY_ADDR = 63
+SCRIPT_ADDR = 40
+WIF = 128
 
 ################################## transactions
 
@@ -163,8 +163,9 @@ def Hash(x):
     return sha256(sha256(x))
 
 def PoWHash(x):
+    import x11_gost_hash
     if type(x) is unicode: x=x.encode('utf-8')
-    return x11_hash.getPoWHash(x)
+    return x11_gost_hash.getPoWHash(x)
 
 
 hash_encode = lambda x: x[::-1].encode('hex')
