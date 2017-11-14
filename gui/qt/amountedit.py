@@ -63,10 +63,9 @@ class AmountEdit(MyLineEdit):
 
     def get_amount(self):
         try:
-            x = int(str(self.text()))
+            return (int if self.is_int else Decimal)(str(self.text()))
         except:
             return None
-        return x
 
 
 class BTCAmountEdit(AmountEdit):
@@ -79,11 +78,11 @@ class BTCAmountEdit(AmountEdit):
         p = self.decimal_point()
         assert p in [2, 5, 8]
         if p == 8:
-            return 'DASH'
+            return 'Sib'
         if p == 5:
-            return 'mDASH'
+            return 'mSib'
         if p == 2:
-            return 'uDASH'
+            return 'uSib'
         raise Exception('Unknown base unit')
 
     def get_amount(self):
@@ -96,7 +95,7 @@ class BTCAmountEdit(AmountEdit):
 
     def setAmount(self, amount):
         if amount is None:
-            self.setText("")
+            self.setText(" ") # Space forces repaint in case units changed
         else:
             self.setText(format_satoshis_plain(amount, self.decimal_point()))
 
