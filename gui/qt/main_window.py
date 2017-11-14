@@ -325,7 +325,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         run_hook('load_wallet', wallet, self)
 
     def watching_only_changed(self):
-        title = 'Electrum-DASH %s  -  %s' % (self.wallet.electrum_version,
+        title = 'Electrum-SIB %s  -  %s' % (self.wallet.electrum_version,
                                         self.wallet.basename())
         if self.wallet.is_watching_only():
             self.warn_if_watching_only()
@@ -375,7 +375,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 shutil.copy2(path, new_path)
                 self.show_message(_("A copy of your wallet file was created in")+" '%s'" % str(new_path), title=_("Wallet backup created"))
             except (IOError, os.error), reason:
-                self.show_critical(_("Electrum-DASH was unable to copy your wallet file to the specified location.") + "\n" + str(reason), title=_("Unable to create backup"))
+                self.show_critical(_("Electrum-SIB was unable to copy your wallet file to the specified location.") + "\n" + str(reason), title=_("Unable to create backup"))
 
     def update_recently_visited(self, filename):
         recent = self.config.get('recently_open', [])
@@ -453,7 +453,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         tools_menu = menubar.addMenu(_("&Tools"))
 
         # Settings / Preferences are all reserved keywords in OSX using this as work around
-        tools_menu.addAction(_("Electrum-DASH preferences") if sys.platform == 'darwin' else _("Preferences"), self.settings_dialog)
+        tools_menu.addAction(_("Electrum-SIB preferences") if sys.platform == 'darwin' else _("Preferences"), self.settings_dialog)
         tools_menu.addAction(_("&Network"), self.run_network_dialog)
         tools_menu.addAction(_("&Plugins"), self.plugins_dialog)
         tools_menu.addSeparator()
@@ -488,8 +488,8 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.pay_to_URI('dash:%s?message=donation for %s'%(d, host))
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-DASH",
-            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum-DASH's focus is speed, with low resource usage and simplifying Dash. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Dash system."))
+        QMessageBox.about(self, "Electrum-SIB",
+            _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum-SIB's focus is speed, with low resource usage and simplifying Dash. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Dash system."))
 
     def show_report_bug(self):
         msg = ' '.join([
@@ -498,7 +498,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             _("Before reporting a bug, upgrade to the most recent version of Electrum-DASH (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Electrum-DASH - " + _("Reporting Bugs"))
+        self.show_message(msg, title="Electrum-SIB - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -526,7 +526,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-DASH", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Electrum-SIB", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -577,11 +577,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def base_unit(self):
         assert self.decimal_point in [2, 5, 8]
         if self.decimal_point == 2:
-            return 'uDASH'
+            return 'uSIB'
         if self.decimal_point == 5:
-            return 'mDASH'
+            return 'mSIB'
         if self.decimal_point == 8:
-            return 'DASH'
+            return 'SIB'
         raise Exception('Unknown base unit')
 
     def update_status(self):
@@ -2763,9 +2763,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         SSL_id_e.setReadOnly(True)
         id_widgets.append((SSL_id_label, SSL_id_e))
 
-        units = ['DASH', 'mDASH', 'uDASH']
+        units = ['SIB', 'mSIB', 'uSIB']
         msg = _('Base unit of your wallet.')\
-              + '\n1DASH=1000mDASH.\n' \
+              + '\n1SIB=1000mSIB.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
@@ -2777,11 +2777,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 return
             edits = self.amount_e, self.fee_e, self.receive_amount_e, fee_e
             amounts = [edit.get_amount() for edit in edits]
-            if unit_result == 'DASH':
+            if unit_result == 'SIB':
                 self.decimal_point = 8
-            elif unit_result == 'mDASH':
+            elif unit_result == 'mSIB':
                 self.decimal_point = 5
-            elif unit_result == 'uDASH':
+            elif unit_result == 'uSIB':
                 self.decimal_point = 2
             else:
                 raise Exception('Unknown base unit')
@@ -2917,11 +2917,11 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         run_hook('close_settings_dialog')
         if self.need_restart:
-            self.show_warning(_('Please restart Electrum-DASH to activate the new GUI settings'), title=_('Success'))
+            self.show_warning(_('Please restart Electrum-SIB to activate the new GUI settings'), title=_('Success'))
 
     def run_network_dialog(self):
         if not self.network:
-            self.show_warning(_('You are using Electrum-DASH in offline mode; restart Electrum-DASH if you want to get connected'), title=_('Offline'))
+            self.show_warning(_('You are using Electrum-SIB in offline mode; restart Electrum-SIB if you want to get connected'), title=_('Offline'))
             return
         NetworkDialog(self.wallet.network, self.config, self).do_exec()
 
@@ -2949,7 +2949,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.gui_object.close_window(self)
 
     def plugins_dialog(self):
-        self.pluginsdialog = d = WindowModalDialog(self, _('Electrum-DASH Plugins'))
+        self.pluginsdialog = d = WindowModalDialog(self, _('Electrum-SIB Plugins'))
 
         plugins = self.gui_object.plugins
 

@@ -161,7 +161,7 @@ class ElectrumGui:
 
     def do_send(self):
         if not is_valid(self.str_recipient):
-            print(_('Invalid Dash address'))
+            print(_('Invalid SIB address'))
             return
         try:
             amount = int(Decimal(self.str_amount) * COIN)

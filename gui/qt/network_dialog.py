@@ -83,8 +83,8 @@ class NetworkChoiceLayout(object):
         hbox.addWidget(l)
         hbox.addWidget(QLabel(status))
         hbox.addStretch(50)
-        msg = _("Electrum-DASH sends your wallet addresses to a single server, in order to receive your transaction history.") + "\n\n" \
-            + _("In addition, Electrum-DASH connects to several nodes in order to download block headers and find out the longest blockchain.") + " " \
+        msg = _("Electrum-SIB sends your wallet addresses to a single server, in order to receive your transaction history.") + "\n\n" \
+            + _("In addition, Electrum-SIB connects to several nodes in order to download block headers and find out the longest blockchain.") + " " \
             + _("This blockchain is used to verify the transactions sent by the address server.")
         hbox.addWidget(HelpButton(msg))
         vbox.addLayout(hbox)
@@ -116,8 +116,8 @@ class NetworkChoiceLayout(object):
         self.autoconnect_cb.setChecked(auto_connect)
         grid.addWidget(self.autoconnect_cb, 1, 1, 1, 3)
         self.autoconnect_cb.setEnabled(self.config.is_modifiable('auto_connect'))
-        msg = _("If auto-connect is enabled, Electrum-DASH will always use a server that is on the longest blockchain.") + "\n" \
-            + _("If it is disabled, Electrum-DASH will warn you if your server is lagging.")
+        msg = _("If auto-connect is enabled, Electrum-SIB will always use a server that is on the longest blockchain.") + "\n" \
+            + _("If it is disabled, Electrum-SIB will warn you if your server is lagging.")
         self.autoconnect_cb.setToolTip(msg)
 
         label = _('Active Servers') if network.is_connected() else _('Default Servers')

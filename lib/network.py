@@ -545,7 +545,7 @@ class Network(util.DaemonThread):
                 # and are placed in the unanswered_requests dictionary
                 client_req = self.unanswered_requests.pop(message_id, None)
                 if client_req:
-                    assert interface == self.interface
+                    # assert interface == self.interface
                     callbacks = [client_req[2]]
                 else:
                     callbacks = []
