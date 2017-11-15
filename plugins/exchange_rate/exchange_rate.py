@@ -8,11 +8,11 @@ import traceback
 import csv
 from decimal import Decimal
 
-from electrum_dash.bitcoin import COIN
-from electrum_dash.plugins import BasePlugin, hook
-from electrum_dash.i18n import _
-from electrum_dash.util import PrintError, ThreadJob
-from electrum_dash.util import format_satoshis
+from electrum_sib.bitcoin import COIN
+from electrum_sib.plugins import BasePlugin, hook
+from electrum_sib.i18n import _
+from electrum_sib.util import PrintError, ThreadJob
+from electrum_sib.util import format_satoshis
 
 
 # See https://en.wikipedia.org/wiki/ISO_4217
@@ -95,7 +95,7 @@ class ExchangeBase(PrintError):
 
 class Bittrex(ExchangeBase):
     def get_rates(self, ccy):
-        json = self.get_json('bittrex.com', '/api/v1.1/public/getticker?market=BTC-DASH')
+        json = self.get_json('bittrex.com', '/api/v1.1/public/getticker?market=BTC-SIB')
         quote_currencies = {}
         if not json.get('success', False):
             return quote_currencies
@@ -107,13 +107,13 @@ class Poloniex(ExchangeBase):
     def get_rates(self, ccy):
         json = self.get_json('poloniex.com', '/public?command=returnTicker')
         quote_currencies = {}
-        dash_ticker = json.get('BTC_DASH')
-        quote_currencies['BTC'] = Decimal(dash_ticker['last'])
+        sib_ticker = json.get('BTC_SIB')
+        quote_currencies['BTC'] = Decimal(sib_ticker['last'])
         return quote_currencies
 
 class CoinMarketCap(ExchangeBase):
     def get_rates(self, ccy):
-        json = self.get_json('api.coinmarketcap.com', '/v1/ticker/dash/')
+        json = self.get_json('api.coinmarketcap.com', '/v1/ticker/sib/')
         quote_currencies = {}
         if not isinstance(json, list):
             return quote_currencies
@@ -228,7 +228,7 @@ class FxPlugin(BasePlugin, ThreadJob):
     @hook
     def get_fiat_status_text(self, btc_balance):
         rate = self.exchange_rate()
-        return _("  (No FX rate available)") if rate is None else "1 DASH~%s %s" % (self.value_str(COIN, rate), self.ccy)
+        return _("  (No FX rate available)") if rate is None else "1 SIB~%s %s" % (self.value_str(COIN, rate), self.ccy)
 
     def get_historical_rates(self):
         if self.show_history():

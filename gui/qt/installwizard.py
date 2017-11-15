@@ -4,18 +4,18 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-import electrum_dash
-from electrum_dash.i18n import _
+import electrum_sib
+from electrum_sib.i18n import _
 
 from seed_dialog import SeedDisplayLayout, SeedWarningLayout, SeedInputLayout
 from network_dialog import NetworkChoiceLayout
 from util import *
 from password_dialog import PasswordLayout, PW_NEW, PW_PASSPHRASE
 
-from electrum_dash.wallet import Wallet
-from electrum_dash.mnemonic import prepare_seed
-from electrum_dash.util import UserCancelled
-from electrum_dash.wizard import (WizardBase,
+from electrum_sib.wallet import Wallet
+from electrum_sib.mnemonic import prepare_seed
+from electrum_sib.util import UserCancelled
+from electrum_sib.wizard import (WizardBase,
                              MSG_ENTER_PASSWORD, MSG_RESTORE_PASSPHRASE,
                              MSG_COSIGNER, MSG_ENTER_SEED_OR_MPK,
                              MSG_SHOW_MPK, MSG_VERIFY_SEED,
@@ -108,6 +108,7 @@ class InstallWizard(QDialog, MessageBoxMixin, WizardBase):
         hbox.setStretchFactor(inner_vbox, 1)
         outer_vbox.addLayout(hbox)
         outer_vbox.addLayout(Buttons(self.cancel_button, self.next_button))
+        # TODO
         self.set_icon(':icons/electrum-dash.png')
         self.show()
         self.raise_()

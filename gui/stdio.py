@@ -1,10 +1,10 @@
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum_dash.wallet import WalletStorage, Wallet
-from electrum_dash.util import format_satoshis, set_verbosity, StoreDict
-from electrum_dash.bitcoin import is_valid, COIN, TYPE_ADDRESS
-from electrum_dash.network import filter_protocol
+from electrum_sib.wallet import WalletStorage, Wallet
+from electrum_sib.util import format_satoshis, set_verbosity, StoreDict
+from electrum_sib.bitcoin import is_valid, COIN, TYPE_ADDRESS
+from electrum_sib.network import filter_protocol
 import sys, getpass, datetime
 
 # minimal fdisk like gui for console usage
@@ -17,7 +17,7 @@ class ElectrumGui:
         network = daemon.network
         storage = WalletStorage(config.get_wallet_path())
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum-dash create'"
+            print "Wallet not found. try 'electrum-sib create'"
             exit()
 
         self.done = 0
@@ -206,12 +206,12 @@ class ElectrumGui:
             print(_('Error'))
 
     def network_dialog(self):
-        print("use 'electrum-dash setconfig server/proxy' to change your network settings")
+        print("use 'electrum-sib setconfig server/proxy' to change your network settings")
         return True
 
 
     def settings_dialog(self):
-        print("use 'electrum-dash setconfig' to change your settings")
+        print("use 'electrum-sib setconfig' to change your settings")
         return True
 
     def password_dialog(self):

@@ -5,13 +5,13 @@ import threading
 from binascii import hexlify, unhexlify
 from functools import partial
 
-from electrum_dash.account import BIP32_Account
-from electrum_dash.bitcoin import (bc_address_to_hash_160, xpub_from_pubkey,
+from electrum_sib.account import BIP32_Account
+from electrum_sib.bitcoin import (bc_address_to_hash_160, xpub_from_pubkey,
                               public_key_to_bc_address, EncodeBase58Check,
                               TYPE_ADDRESS, PUBKEY_ADDR, SCRIPT_ADDR)
-from electrum_dash.i18n import _
-from electrum_dash.plugins import BasePlugin, hook
-from electrum_dash.transaction import (deserialize, is_extended_pubkey,
+from electrum_sib.i18n import _
+from electrum_sib.plugins import BasePlugin, hook
+from electrum_sib.transaction import (deserialize, is_extended_pubkey,
                                   Transaction, x_to_xpub)
 from ..hw_wallet import BIP44_HW_Wallet, HW_PluginBase
 
@@ -32,7 +32,7 @@ class TrezorCompatibleWallet(BIP44_HW_Wallet):
         return EncodeBase58Check(xpub)
 
     def decrypt_message(self, pubkey, message, password):
-        raise RuntimeError(_('Electrum-DASH and %s encryption and decryption are currently incompatible') % self.device)
+        raise RuntimeError(_('Electrum-SIB and %s encryption and decryption are currently incompatible') % self.device)
         address = public_key_to_bc_address(pubkey.decode('hex'))
         client = self.get_client()
         address_path = self.address_id(address)
@@ -46,7 +46,7 @@ class TrezorCompatibleWallet(BIP44_HW_Wallet):
         client = self.get_client()
         address_path = self.address_id(address)
         address_n = client.expand_path(address_path)
-        msg_sig = client.sign_message('Dash', address_n, message)
+        msg_sig = client.sign_message('Sibcoin', address_n, message)
         return msg_sig.signature
 
     def get_input_tx(self, tx_hash):
@@ -236,7 +236,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
         client = self.get_client(wallet)
         inputs = self.tx_inputs(tx, True)
         outputs = self.tx_outputs(wallet, tx)
-        signed_tx = client.sign_tx('Dash', inputs, outputs)[1]
+        signed_tx = client.sign_tx('Sibcoin', inputs, outputs)[1]
         raw = signed_tx.encode('hex')
         tx.update_signatures(raw)
 
@@ -247,7 +247,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
             return
         address_path = wallet.address_id(address)
         address_n = client.expand_path(address_path)
-        client.get_address('Dash', address_n, True)
+        client.get_address('Sibcoin', address_n, True)
 
     def tx_inputs(self, tx, for_sig=False):
         inputs = []

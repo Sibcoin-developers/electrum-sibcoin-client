@@ -12,7 +12,7 @@ import argparse
 version = imp.load_source('version', 'lib/version.py')
 
 if sys.version_info[:3] < (2, 7, 0):
-    sys.exit("Error: Electrum-DASH requires Python version >= 2.7.0...")
+    sys.exit("Error: Electrum-SIB requires Python version >= 2.7.0...")
 
 data_files = []
 
@@ -28,12 +28,12 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-dash.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-dash.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-sib.desktop']),
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-sib.png'])
     ]
 
 setup(
-    name="Electrum-DASH",
+    name="Electrum-SIB",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes>=0.1a1',
@@ -45,46 +45,45 @@ setup(
         'dnspython',
         'jsonrpclib',
         'trezor>=0.6.3',
-        'x11_hash>=1.4',
     ],
     dependency_links=[
-        'git+https://github.com/mazaclub/x11_hash@1.4#egg=x11_hash-1.4',
+        'git+https://github.com/ivansib/x11_gost_hash',
         'git+https://github.com/electrum-dash/python-trezor@v0.6.13#egg=trezor',
     ],
     packages=[
-        'electrum_dash',
-        'electrum_dash_gui',
-        'electrum_dash_gui.qt',
-        'electrum_dash_plugins',
-        'electrum_dash_plugins.audio_modem',
-        'electrum_dash_plugins.cosigner_pool',
-        'electrum_dash_plugins.email_requests',
-        'electrum_dash_plugins.exchange_rate',
-        'electrum_dash_plugins.hw_wallet',
-        'electrum_dash_plugins.keepkey',
-        'electrum_dash_plugins.labels',
-        'electrum_dash_plugins.ledger',
-        'electrum_dash_plugins.plot',
-        'electrum_dash_plugins.trezor',
-        'electrum_dash_plugins.virtualkeyboard',
+        'electrum_sib',
+        'electrum_sib_gui',
+        'electrum_sib_gui.qt',
+        'electrum_sib_plugins',
+        'electrum_sib_plugins.audio_modem',
+        'electrum_sib_plugins.cosigner_pool',
+        'electrum_sib_plugins.email_requests',
+        'electrum_sib_plugins.exchange_rate',
+        'electrum_sib_plugins.hw_wallet',
+        'electrum_sib_plugins.keepkey',
+        'electrum_sib_plugins.labels',
+        'electrum_sib_plugins.ledger',
+        'electrum_sib_plugins.plot',
+        'electrum_sib_plugins.trezor',
+        'electrum_sib_plugins.virtualkeyboard',
     ],
     package_dir={
-        'electrum_dash': 'lib',
-        'electrum_dash_gui': 'gui',
-        'electrum_dash_plugins': 'plugins',
+        'electrum_sib': 'lib',
+        'electrum_sib_gui': 'gui',
+        'electrum_sib_plugins': 'plugins',
     },
     package_data={
-        'electrum_dash': [
+        'electrum_sib': [
             'www/index.html',
             'wordlist/*.txt',
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
     },
-    scripts=['electrum-dash'],
+    scripts=['electrum-sib'],
     data_files=data_files,
-    description="Lightweight Dashpay Wallet",
-    author="mazaclub",
+    description="Lightweight Sibcoinpay Wallet",
+    author="serbernar",
     license="MIT License",
-    url="https://electrum-dash.org",
-    long_description="""Lightweight Dashpay Wallet"""
+    url="https://sibcoin.money",
+    long_description="""Lightweight Sibcoin Wallet"""
 )

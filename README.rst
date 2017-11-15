@@ -1,4 +1,4 @@
-Electrum-DASH - lightweight Dash client
+Electrum-SIB - lightweight Sibcoin client
 ==========================================
 
 ::
@@ -7,11 +7,11 @@ Electrum-DASH - lightweight Dash client
   Original Author: Thomas Voegtlin
   Port Maintainer: Tyler Willis, Holger Schinzel
   Language: Python
-  Homepage: https://electrum-dash.org/
+  Homepage: https://sibcoin.money/
 
 
-.. image:: https://travis-ci.org/dashpay/electrum-dash.svg?branch=master
-    :target: https://travis-ci.org/dashpay/electrum-dash
+.. image:: https://travis-ci.org/sibpay/electrum-sib.svg?branch=master
+    :target: https://travis-ci.org/sibpay/electrum-sib
     :alt: Build Status
 
 
@@ -21,20 +21,20 @@ Electrum-DASH - lightweight Dash client
 Getting started
 ===============
 
-Electrum-DASH is a pure python application. However, if you want to use the
+Electrum-SIB is a pure python application. However, if you want to use the
 Qt interface, then you need to install the Qt dependencies::
 
     sudo apt-get install python-qt4
 
 If you downloaded the official package (tar.gz), then you can run
-Electrum-DASH from its root directory, without installing it on your
+Electrum-SIB from its root directory, without installing it on your
 system; all the python dependencies are included in the 'packages'
-directory. To run Electrum-DASH from its root directory, just do::
+directory. To run Electrum-SIB from its root directory, just do::
 
-    ./electrum-dash
+    ./electrum-sib
 
 If you cloned the git repository, then you need to compile extra files
-before you can run Electrum-DASH. Read the next section, "Development
+before you can run Electrum-SIB. Read the next section, "Development
 Version".
 
 
@@ -44,8 +44,8 @@ Development version
 
 Check out the code from Github::
 
-    git clone git://github.com/dashpay/electrum-dash.git
-    cd electrum-dash
+    git clone git://github.com/sibpay/electrum-sib.git
+    cd electrum-sib
 
 Run install (this should install dependencies)::
 
@@ -71,13 +71,13 @@ Create translations::
 Install on Linux systems
 ========================
 
-If you install Electrum-DASH on your system, you can run it from any
+If you install Electrum-SIB on your system, you can run it from any
 directory.
 
 If you have pip, you can do::
 
     python setup.py sdist
-    sudo pip install --pre dist/Electrum-DASH-2.0.tar.gz
+    sudo pip install --pre dist/Electrum-SIB-2.0.tar.gz
 
 
 If you don't have pip, install with::
@@ -95,7 +95,7 @@ In oder to creating binaries, you must create the 'packages' directory::
 
     ./contrib/make_packages
 
-This directory contains the python dependencies used by Electrum-DASH.
+This directory contains the python dependencies used by Electrum-SIB.
 
 Mac OS X
 --------
@@ -106,7 +106,7 @@ Mac OS X
     # On brew installs
     ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-    sudo hdiutil create -fs HFS+ -volname "Electrum-DASH" -srcfolder dist/Electrum-DASH.app dist/electrum-dash-VERSION-macosx.dmg
+    sudo hdiutil create -fs HFS+ -volname "Electrum-SIB" -srcfolder dist/Electrum-SIB.app dist/electrum-sib-VERSION-macosx.dmg
 
 
 Windows

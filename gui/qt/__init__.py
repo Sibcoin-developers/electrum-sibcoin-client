@@ -36,17 +36,17 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_dash.i18n import _, set_language
-from electrum_dash.plugins import run_hook
-from electrum_dash import SimpleConfig, Wallet, WalletStorage
-from electrum_dash.paymentrequest import InvoiceStore
-from electrum_dash.contacts import Contacts
-from electrum_dash.synchronizer import Synchronizer
-from electrum_dash.verifier import SPV
-from electrum_dash.util import DebugMem
-from electrum_dash.wallet import Abstract_Wallet
+from electrum_sib.i18n import _, set_language
+from electrum_sib.plugins import run_hook
+from electrum_sib import SimpleConfig, Wallet, WalletStorage
+from electrum_sib.paymentrequest import InvoiceStore
+from electrum_sib.contacts import Contacts
+from electrum_sib.synchronizer import Synchronizer
+from electrum_sib.verifier import SPV
+from electrum_sib.util import DebugMem
+from electrum_sib.wallet import Abstract_Wallet
 from installwizard import InstallWizard
-from dash_style import dash_stylesheet
+from dash_style import sib_stylesheet
 
 
 try:
@@ -87,7 +87,7 @@ class ElectrumGui:
         self.efilter = OpenFileEventFilter(self.windows)
         self.app = QApplication(sys.argv)
         self.app.installEventFilter(self.efilter)
-        self.app.setStyleSheet(dash_stylesheet)
+        self.app.setStyleSheet(sib_stylesheet)
         self.timer = Timer()
         # shared objects
         self.invoices = InvoiceStore(self.config)

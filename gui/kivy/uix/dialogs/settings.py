@@ -3,12 +3,12 @@ from kivy.factory import Factory
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-from electrum_dash.util import base_units
-from electrum_dash.i18n import languages
-from electrum_dash_gui.kivy.i18n import _
-from electrum_dash.plugins import run_hook
-from electrum_dash.bitcoin import RECOMMENDED_FEE
-from electrum_dash import coinchooser
+from electrum_sib.util import base_units
+from electrum_sib.i18n import languages
+from electrum_sib_gui.kivy.i18n import _
+from electrum_sib.plugins import run_hook
+from electrum_sib.bitcoin import RECOMMENDED_FEE
+from electrum_sib import coinchooser
 
 from choice_dialog import ChoiceDialog
 

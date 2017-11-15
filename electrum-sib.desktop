@@ -1,0 +1,17 @@
+# If you want electrum-sib to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum_sib.desktop
+
+[Desktop Entry]
+Comment=Lightweight Sibcoinpay Client
+Exec=electrum-sib %u
+GenericName[en_US]=Electrum-SIB
+GenericName=Electrum-SIB
+Icon=electrum-sib
+Name[en_US]=Electrum Sibcoinpay Wallet
+Name=Electrum Sibcoinpay Wallet
+Categories=Network;
+StartupNotify=false
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/sibpay;
+

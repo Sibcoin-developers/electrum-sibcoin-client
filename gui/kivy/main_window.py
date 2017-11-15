@@ -7,15 +7,15 @@ import traceback
 from decimal import Decimal
 import threading
 
-import electrum_dash
-from electrum_dash import WalletStorage, Wallet
-from electrum_dash_gui.kivy.i18n import _
-from electrum_dash.contacts import Contacts
-from electrum_dash.paymentrequest import InvoiceStore
-from electrum_dash.util import profiler, InvalidPassword
-from electrum_dash.plugins import run_hook
-from electrum_dash.util import format_satoshis, format_satoshis_plain
-from electrum_dash.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
+import electrum_sib
+from electrum_sib import WalletStorage, Wallet
+from electrum_sib_gui.kivy.i18n import _
+from electrum_sib.contacts import Contacts
+from electrum_sib.paymentrequest import InvoiceStore
+from electrum_sib.util import profiler, InvalidPassword
+from electrum_sib.plugins import run_hook
+from electrum_sib.util import format_satoshis, format_satoshis_plain
+from electrum_sib.paymentrequest import PR_UNPAID, PR_PAID, PR_UNKNOWN, PR_EXPIRED
 
 from kivy.app import App
 from kivy.core.window import Window
@@ -69,7 +69,7 @@ Label.register('Roboto',
                'gui/kivy/data/fonts/Roboto-Bold.ttf')
 
 
-from electrum_dash.util import base_units
+from electrum_sib.util import base_units
 
 
 class ElectrumWindow(App):
@@ -83,7 +83,7 @@ class ElectrumWindow(App):
         self.send_screen.set_URI(uri)
 
     def on_new_intent(self, intent):
-        if intent.getScheme() != 'dash':
+        if intent.getScheme() != 'sib':
             return
         uri = intent.getDataString()
         self.set_URI(uri)
@@ -240,15 +240,15 @@ class ElectrumWindow(App):
             self.send_screen.do_clear()
 
     def on_qr(self, data):
-        from electrum_dash.bitcoin import base_decode, is_address
+        from electrum_sib.bitcoin import base_decode, is_address
         if is_address(data):
             self.set_URI(data)
             return
-        if data.startswith('dash:'):
+        if data.startswith('sib:'):
             self.set_URI(data)
             return
         # try to decode transaction
-        from electrum_dash.transaction import Transaction
+        from electrum_sib.transaction import Transaction
         try:
             text = base_decode(data, None, base=43).encode('hex')
             tx = Transaction(text)
@@ -284,7 +284,7 @@ class ElectrumWindow(App):
         self.receive_screen.screen.address = addr
 
     def show_pr_details(self, req, status, is_invoice):
-        from electrum_dash.util import format_time
+        from electrum_sib.util import format_time
         requestor = req.get('requestor')
         exp = req.get('exp')
         memo = req.get('memo')
@@ -378,7 +378,7 @@ class ElectrumWindow(App):
         run_hook('init_kivy', self)
         # default tab
         self.switch_to('history')
-        # bind intent for dash: URI scheme
+        # bind intent for sib: URI scheme
         if platform == 'android':
             from android import activity
             from jnius import autoclass

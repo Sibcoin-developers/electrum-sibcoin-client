@@ -43,11 +43,11 @@ from blockchain import Blockchain
 from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 import masternode_manager
 
-DEFAULT_PORTS = {'t':'50001', 's':'50002', 'h':'8081', 'g':'8082'}
+DEFAULT_PORTS = {'t': '50001', 's': '50002', 'h': '8081', 'g': '8082'}
 
 TESTNET_SERVERS = {}
 MAINNET_SERVERS = {
-    "localhost": DEFAULT_PORTS
+    "62.149.13.59": DEFAULT_PORTS
 }
 DEFAULT_SERVERS = MAINNET_SERVERS
 
@@ -87,7 +87,8 @@ def parse_servers(result):
 
     return servers
 
-def filter_protocol(hostmap = DEFAULT_SERVERS, protocol = 's'):
+
+def filter_protocol(hostmap=DEFAULT_SERVERS, protocol='s'):
     '''Filters the hostmap for those implementing protocol.
     The result is a list in serialized form.'''
     eligible = []
@@ -97,25 +98,29 @@ def filter_protocol(hostmap = DEFAULT_SERVERS, protocol = 's'):
             eligible.append(serialize_server(host, port, protocol))
     return eligible
 
-def pick_random_server(hostmap = DEFAULT_SERVERS, protocol = 's', exclude_set = set()):
+
+def pick_random_server(hostmap=DEFAULT_SERVERS, protocol='s', exclude_set=set()):
     eligible = list(set(filter_protocol(hostmap, protocol)) - exclude_set)
     return random.choice(eligible) if eligible else None
+
 
 from simple_config import SimpleConfig
 
 proxy_modes = ['socks4', 'socks5', 'http']
 
+
 def serialize_proxy(p):
     if type(p) != dict:
         return None
-    return ':'.join([p.get('mode'),p.get('host'), p.get('port')])
+    return ':'.join([p.get('mode'), p.get('host'), p.get('port')])
+
 
 def deserialize_proxy(s):
     if type(s) not in [str, unicode]:
         return None
     if s.lower() == 'none':
         return None
-    proxy = { "mode":"socks5", "host":"localhost" }
+    proxy = {"mode": "socks5", "host": "localhost"}
     args = s.split(':')
     n = 0
     if proxy_modes.count(args[n]) == 1:
@@ -130,14 +135,17 @@ def deserialize_proxy(s):
         proxy["port"] = "8080" if proxy["mode"] == "http" else "1080"
     return proxy
 
+
 def deserialize_server(server_str):
     host, port, protocol = str(server_str).split(':')
     assert protocol in 'st'
-    int(port)    # Throw if cannot be converted to int
+    int(port)  # Throw if cannot be converted to int
     return host, port, protocol
+
 
 def serialize_server(host, port, protocol):
     return str(':'.join([host, port, protocol]))
+
 
 class Network(util.DaemonThread):
     """The Network class manages a set of connections to remote electrum
@@ -175,7 +183,7 @@ class Network(util.DaemonThread):
         self.pending_sends = []
         self.message_id = 0
         self.debug = False
-        self.irc_servers = {} # returned by interface (list from irc)
+        self.irc_servers = {}  # returned by interface (list from irc)
         self.recent_servers = self.read_recent_servers()
 
         self.banner = ''
@@ -193,7 +201,7 @@ class Network(util.DaemonThread):
         # callbacks set by the GUI
         self.callbacks = defaultdict(list)
 
-        dir_path = os.path.join( self.config.path, 'certs')
+        dir_path = os.path.join(self.config.path, 'certs')
         if not os.path.exists(dir_path):
             os.mkdir(dir_path)
 
@@ -295,7 +303,8 @@ class Network(util.DaemonThread):
         return message_id
 
     def send_subscriptions(self):
-        self.print_error('sending subscriptions to', self.interface.server, len(self.unanswered_requests), len(self.subscribed_addresses))
+        self.print_error('sending subscriptions to', self.interface.server, len(self.unanswered_requests),
+                         len(self.subscribed_addresses))
         self.sub_cache.clear()
         # Resend unanswered requests
         requests = self.unanswered_requests.values()
@@ -311,7 +320,8 @@ class Network(util.DaemonThread):
         self.queue_request('blockchain.estimatefee', [2])
         self.queue_request('blockchain.relayfee', [])
         # Disabled until API is stable.
-#        self.queue_request('masternode.proposals.subscribe', [])
+
+    #        self.queue_request('masternode.proposals.subscribe', [])
 
     def get_status_value(self, key):
         if key == 'status':
@@ -357,7 +367,7 @@ class Network(util.DaemonThread):
                 except:
                     continue
                 if host not in out:
-                    out[host] = { protocol:port }
+                    out[host] = {protocol: port}
         return out
 
     def start_interface(self, server):
@@ -435,13 +445,13 @@ class Network(util.DaemonThread):
 
     def switch_to_random_interface(self):
         '''Switch to a random connected server other than the current one'''
-        servers = self.get_interfaces()    # Those in connected state
+        servers = self.get_interfaces()  # Those in connected state
         if self.default_server in servers:
             servers.remove(self.default_server)
         if servers:
             self.switch_to_interface(random.choice(servers))
 
-    def switch_lagging_interface(self, suggestion = None):
+    def switch_lagging_interface(self, suggestion=None):
         '''If auto_connect and lagging, switch interface'''
         if self.server_is_lagging() and self.auto_connect:
             if suggestion and self.protocol == deserialize_server(suggestion)[2]:
@@ -503,9 +513,9 @@ class Network(util.DaemonThread):
             if error is None:
                 self.irc_servers = parse_servers(result)
                 self.notify('servers')
-#        elif method == 'masternode.proposals.subscribe':
-#            if error is None:
-#                self.on_proposals(result)
+                #        elif method == 'masternode.proposals.subscribe':
+                #            if error is None:
+                #                self.on_proposals(result)
         elif method == 'server.banner':
             if error is None:
                 self.banner = result
@@ -800,7 +810,7 @@ class Network(util.DaemonThread):
             self.maintain_sockets()
             self.wait_on_sockets()
             self.handle_bc_requests()
-            self.run_jobs()    # Synchronizer and Verifier
+            self.run_jobs()  # Synchronizer and Verifier
             self.process_pending_sends()
 
         self.stop_network()
@@ -816,7 +826,8 @@ class Network(util.DaemonThread):
             return
 
         if server_version < MIN_SERVER_VERSION:
-            self.print_error('Disconnecting %s with version %s (minimum: %s)' % (i.server, server_version, MIN_SERVER_VERSION))
+            self.print_error(
+                'Disconnecting %s with version %s (minimum: %s)' % (i.server, server_version, MIN_SERVER_VERSION))
             self.invalid_version(i.server)
 
     def on_header(self, i, header):
@@ -833,7 +844,6 @@ class Network(util.DaemonThread):
         if i == self.interface:
             self.switch_lagging_interface()
             self.notify('updated')
-
 
     def get_header(self, tx_height):
         return self.blockchain.read_header(tx_height)
@@ -862,7 +872,7 @@ class Network(util.DaemonThread):
             return False, "error: " + out
         return True, out
 
-#    def on_proposals(self, result):
+# def on_proposals(self, result):
 #        """Handle new information on all budget proposals."""
 #        all_proposals = masternode_manager.parse_proposals_subscription_result(result)
 #        self.all_proposals = all_proposals

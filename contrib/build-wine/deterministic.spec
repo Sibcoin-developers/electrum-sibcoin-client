@@ -3,7 +3,7 @@
 home = 'C:\\electrum\\'
 
 # We don't put these files in to actually include them in the script but to make the Analysis method scan them for imports
-a = Analysis([home+'electrum-dash',
+a = Analysis([home+'electrum-sib',
               home+'gui/qt/main_window.py',
               home+'gui/text.py',
               home+'lib/util.py',
@@ -63,11 +63,11 @@ exe = EXE(pyz,
           a.scripts,
           a.binaries,
           a.datas,
-          name=os.path.join('build\\pyi.win32\\electrum', 'electrum-dash.exe'),
+          name=os.path.join('build\\pyi.win32\\electrum', 'electrum-sib.exe'),
           debug=False,
           strip=None,
           upx=False,
-          icon=home+'icons/electrum-dash.ico',
+          icon=home+'icons/electrum-sib.ico',
           console=False)
           # The console True makes an annoying black box pop up, but it does make Electrum output command line commands, with this turned off no output will be given but commands can still be used
 

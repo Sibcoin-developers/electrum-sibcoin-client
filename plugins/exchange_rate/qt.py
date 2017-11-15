@@ -1,17 +1,17 @@
 import time
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
-from electrum_dash_gui.qt.util import *
-from electrum_dash_gui.qt.amountedit import AmountEdit
+from electrum_sib_gui.qt.util import *
+from electrum_sib_gui.qt.amountedit import AmountEdit
 
 
-from electrum_dash.bitcoin import COIN
-from electrum_dash.i18n import _
+from electrum_sib.bitcoin import COIN
+from electrum_sib.i18n import _
 from decimal import Decimal
 from functools import partial
-from electrum_dash.plugins import hook
+from electrum_sib.plugins import hook
 from exchange_rate import FxPlugin
-from electrum_dash.util import timestamp_to_datetime
+from electrum_sib.util import timestamp_to_datetime
 
 class Plugin(FxPlugin, QObject):
 

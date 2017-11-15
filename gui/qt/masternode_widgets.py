@@ -3,10 +3,10 @@
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-from electrum_dash import bitcoin
-from electrum_dash.bitcoin import COIN
-from electrum_dash.i18n import _
-from electrum_dash.masternode import NetworkAddress, MasternodeAnnounce
+from electrum_sib import bitcoin
+from electrum_sib.bitcoin import COIN
+from electrum_sib.i18n import _
+from electrum_sib.masternode import NetworkAddress, MasternodeAnnounce
 
 import util
 
@@ -307,7 +307,7 @@ class MasternodeOutputsTab(QWidget):
         self.setLayout(vbox)
 
     def scan_for_outputs(self, include_frozen):
-        """Scan for 1000 DASH outputs.
+        """Scan for 1000 SIB outputs.
 
         If one or more is found, populate the list and enable the sign button.
         """

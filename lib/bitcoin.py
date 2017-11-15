@@ -30,7 +30,7 @@ import re
 import hmac
 
 import version
-from electrum_dash.util import print_error, InvalidPassword
+from electrum_sib.util import print_error, InvalidPassword
 
 import ecdsa
 import aes
