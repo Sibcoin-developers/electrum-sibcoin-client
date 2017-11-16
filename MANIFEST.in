@@ -1,5 +1,8 @@
 include LICENCE RELEASE-NOTES AUTHORS
 include README.rst
+include INSTALL.md
+include installation.sh
+include requirements.pip
 include electrum-sib.conf.sample
 include electrum-sib.desktop
 include *.py

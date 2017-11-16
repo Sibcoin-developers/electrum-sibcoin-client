@@ -22,33 +22,34 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     opts, _ = parser.parse_known_args(sys.argv[1:])
     usr_share = os.path.join(sys.prefix, "share")
     if not os.access(opts.root_path + usr_share, os.W_OK) and \
-       not os.access(opts.root_path, os.W_OK):
+            not os.access(opts.root_path, os.W_OK):
         if 'XDG_DATA_HOME' in os.environ.keys():
             usr_share = os.environ['$XDG_DATA_HOME']
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
         (os.path.join(usr_share, 'applications/'), ['electrum-sib.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-sib.png'])
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-dash.png'])
     ]
 
 setup(
     name="Electrum-SIB",
     version=version.ELECTRUM_VERSION,
     install_requires=[
-        'slowaes>=0.1a1',
-        'ecdsa>=0.9',
+        'slowaes',
+        'ecdsa',
         'pbkdf2',
         'requests',
         'qrcode',
-        'protobuf',
         'dnspython',
         'jsonrpclib',
-        'trezor>=0.6.3',
+        'trezor',
     ],
     dependency_links=[
         'git+https://github.com/ivansib/x11_gost_hash',
-        'git+https://github.com/electrum-dash/python-trezor@v0.6.13#egg=trezor',
+        'git+https://github.com/trezor/python-trezor@v0.6.13#egg=trezor',
+        'git+https://github.com/keepkey/python-keepkey@v0.7.2#egg=keepkey',
+        'git+https://github.com/LedgerHQ/btchip-python.git@v0.1.17#egg=btchip',
     ],
     packages=[
         'electrum_sib',
@@ -79,7 +80,7 @@ setup(
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
     },
-    scripts=['electrum-sib'],
+    scripts=['electrum-sibcoin'],
     data_files=data_files,
     description="Lightweight Sibcoinpay Wallet",
     author="serbernar",

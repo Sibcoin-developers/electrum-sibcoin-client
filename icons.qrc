@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="/" >
-    <file>icons/electrum-sib.png</file>
+    <file>icons/electrum-dash.png</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>
     <file>icons/clock3.png</file>
@@ -36,10 +36,10 @@
     <file>icons/zoom.png</file>
     <file>icons/bg.png</file>
     <file>icons/navlogo.png</file>
-    <file>icons/sib_downArrow.png</file>
-    <file>icons/sib_upArrow_small.png</file>
-    <file>icons/sib_downArrow_small.png</file>
-    <file>icons/sib_leftArrow_small.png</file>
-    <file>icons/sib_rightArrow_small.png</file>
+    <file>icons/dash_downArrow.png</file>
+    <file>icons/dash_upArrow_small.png</file>
+    <file>icons/dash_downArrow_small.png</file>
+    <file>icons/dash_leftArrow_small.png</file>
+    <file>icons/dash_rightArrow_small.png</file>
   </qresource>
 </RCC>

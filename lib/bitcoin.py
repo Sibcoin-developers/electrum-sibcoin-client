@@ -35,8 +35,6 @@ from electrum_sib.util import print_error, InvalidPassword
 import ecdsa
 import aes
 
-import x11_hash
-
 # NOTE: This switch represents more of a hack than an option.
 # If you change its value, be sure to delete your 'recent_servers' file.
 # You may also need to remove the 'server' option from your config file.
