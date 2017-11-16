@@ -44,10 +44,10 @@ from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 import masternode_manager
 
 DEFAULT_PORTS = {'t': '50001', 's': '50002', 'h': '8081', 'g': '8082'}
-
+UNSSL_PORTS = {'t': '50001'}
 TESTNET_SERVERS = {}
 MAINNET_SERVERS = {
-    "62.149.13.59": DEFAULT_PORTS
+    "62.149.13.59": UNSSL_PORTS
 }
 DEFAULT_SERVERS = MAINNET_SERVERS
 
