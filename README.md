@@ -2,7 +2,7 @@
 
 [Homepage](https://sibcoin.money/)
 
-![example sibcoin wallet](https://github.com/serbernar/electrum-sibcoin/blob/master/sib-wallet-example.jpg)
+![example sibcoin wallet](https://github.com/Sibcoin-developers/electrum-sibcoin-client/blob/master/sib-wallet-example.jpg)
 
 ## Getting started
 
