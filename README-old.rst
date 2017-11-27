@@ -1,4 +1,4 @@
-Electrum-SIB - lightweight Sibcoin client
+Electrum-Sibcoin - lightweight Sibcoin client
 ==========================================
 
 ::
@@ -6,6 +6,7 @@ Electrum-SIB - lightweight Sibcoin client
   Licence: MIT Licence
   Original Author: Thomas Voegtlin
   Port Maintainer: Tyler Willis, Holger Schinzel
+  Sibcoin Maintainer: Sergey Berebko
   Language: Python
   Homepage: https://sibcoin.money/
 
@@ -21,22 +22,20 @@ Electrum-SIB - lightweight Sibcoin client
 Getting started
 ===============
 
-![alt text](http://url/to/img.png)
-
-Electrum-SIB is a pure python application. However, if you want to use the
+Electrum-Sibcoin is a pure python application. However, if you want to use the
 Qt interface, then you need to install the Qt dependencies::
 
     sudo apt-get install python-qt4
 
 If you downloaded the official package (tar.gz), then you can run
-Electrum-SIB from its root directory, without installing it on your
+Electrum-Sibcoin from its root directory, without installing it on your
 system; all the python dependencies are included in the 'packages'
-directory. To run Electrum-SIB from its root directory, just do::
+directory. To run Electrum-Sibcoin from its root directory, just do::
 
     ./electrum-sibcoin
 
 If you cloned the git repository, then you need to compile extra files
-before you can run Electrum-SIB. Read the next section, "Development
+before you can run Electrum-Sibcoin. Read the next section, "Development
 Version".
 
 
@@ -73,13 +72,13 @@ Create translations::
 Install on Linux systems
 ========================
 
-If you install Electrum-SIB on your system, you can run it from any
+If you install Electrum-Sibcoin on your system, you can run it from any
 directory.
 
 If you have pip, you can do::
 
     python setup.py sdist
-    sudo pip install --pre dist/Electrum-SIB-2.0.tar.gz
+    sudo pip install --pre dist/Electrum-Sibcoin-2.0.tar.gz
 
 
 If you don't have pip, install with::
@@ -97,7 +96,7 @@ In oder to creating binaries, you must create the 'packages' directory::
 
     ./contrib/make_packages
 
-This directory contains the python dependencies used by Electrum-SIB.
+This directory contains the python dependencies used by Electrum-Sibcoin.
 
 Mac OS X
 --------
@@ -108,7 +107,7 @@ Mac OS X
     # On brew installs
     ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-    sudo hdiutil create -fs HFS+ -volname "Electrum-SIB" -srcfolder dist/Electrum-SIB.app dist/electrum-sib-VERSION-macosx.dmg
+    sudo hdiutil create -fs HFS+ -volname "Electrum-Sibcoin" -srcfolder dist/Electrum-Sibcoin.app dist/electrum-sib-VERSION-macosx.dmg
 
 
 Windows

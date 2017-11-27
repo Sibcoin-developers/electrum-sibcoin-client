@@ -277,9 +277,9 @@ def user_dir():
     if "HOME" in os.environ:
         return os.path.join(os.environ["HOME"], ".electrum-sib")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-SIB")
+        return os.path.join(os.environ["APPDATA"], "Electrum-Sibcoin")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-SIB")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-Sibcoin")
     elif 'ANDROID_DATA' in os.environ:
         return android_check_data_dir()
     else:

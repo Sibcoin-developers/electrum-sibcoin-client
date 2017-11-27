@@ -1,5 +1,5 @@
-### Electrum-SIB - lightweight multi-coin client
-Electrum-SIB provides a basic SPV wallet for Sibcoinpay. It is a BIP-0044-compliant wallet based on the original Electrum for Bitcoin. This Electrum-SIB client uses Electrum servers to retrieve necessary blockchain headaer & transaction data, so no "Electrum-SIB server" is necessary.
+### Electrum-Sibcoin - lightweight multi-coin client
+Electrum-Sibcoin provides a basic SPV wallet for Sibcoinpay. It is a BIP-0044-compliant wallet based on the original Electrum for Bitcoin. This Electrum-Sibcoin client uses Electrum servers to retrieve necessary blockchain headaer & transaction data, so no "Electrum-Sibcoin server" is necessary.
 
 Because of the Simplified Payment Verification nature of the wallet, services requiring Masternode communications, such as DarkSend and InstantX are not available.
 
@@ -15,9 +15,9 @@ Homepage: https://sibcoin.money
  - To download and use:
     ```
     cd ~
-    wget https://sibcoin.money/releases/v2.4.1/Electrum-SIB-2.4.1-Linux_x86_64.tgz
-    tar -xpzvf Electrum-SIB-2.4.1-Linux_x86_64.tgz
-    cd Electrum-SIB-2.4.1
+    wget https://sibcoin.money/releases/v2.4.1/Electrum-Sibcoin-2.4.1-Linux_x86_64.tgz
+    tar -xpzvf Electrum-Sibcoin-2.4.1-Linux_x86_64.tgz
+    cd Electrum-Sibcoin-2.4.1
     ./electrum-sibcoin_x86_64.bin
     ```
 

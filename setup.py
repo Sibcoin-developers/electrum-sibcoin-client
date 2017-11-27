@@ -12,7 +12,7 @@ import argparse
 version = imp.load_source('version', 'lib/version.py')
 
 if sys.version_info[:3] < (2, 7, 0):
-    sys.exit("Error: Electrum-SIB requires Python version >= 2.7.0...")
+    sys.exit("Error: Electrum-Sibcoin requires Python version >= 2.7.0...")
 
 data_files = []
 
@@ -33,7 +33,7 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     ]
 
 setup(
-    name="Electrum-SIB",
+    name="Electrum-Sibcoin",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes',

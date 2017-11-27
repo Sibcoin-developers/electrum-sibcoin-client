@@ -40,7 +40,7 @@ def icon_filename(sid):
 
 class SeedDialog(WindowModalDialog):
     def __init__(self, parent, seed, imported_keys):
-        WindowModalDialog.__init__(self, parent, ('Electrum-SIB - ' + _('Seed')))
+        WindowModalDialog.__init__(self, parent, ('Electrum-Sibcoin - ' + _('Seed')))
         self.setMinimumWidth(400)
         vbox = QVBoxLayout(self)
         vbox.addLayout(SeedWarningLayout(seed).layout())

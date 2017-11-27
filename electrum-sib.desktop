@@ -4,8 +4,8 @@
 [Desktop Entry]
 Comment=Lightweight Sibcoinpay Client
 Exec=electrum-sib %u
-GenericName[en_US]=Electrum-SIB
-GenericName=Electrum-SIB
+GenericName[en_US]=Electrum-Sibcoin
+GenericName=Electrum-Sibcoin
 Icon=electrum-dash
 Name[en_US]=Electrum Sibcoinpay Wallet
 Name=Electrum Sibcoinpay Wallet

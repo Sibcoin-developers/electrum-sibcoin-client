@@ -1,6 +1,6 @@
-### Electrum-SIB - lightweight multi-coin client
+### Electrum-Sibcoin - lightweight multi-coin client
 
-Electrum-SIB provides a basic SPV wallet for Sibcoin. It is a BIP-0044-compliant wallet based on the original Electrum for Bitcoin. This Electrum-SIB client uses Electrum servers to retrieve necessary blockchain headaer & transaction data, so no "Electrum-SIB server" is necessary.
+Electrum-Sibcoin provides a basic SPV wallet for Sibcoin. It is a BIP-0044-compliant wallet based on the original Electrum for Bitcoin. This Electrum-Sibcoin client uses Electrum servers to retrieve necessary blockchain headaer & transaction data, so no "Electrum-Sibcoin server" is necessary.
 
 Because of the Simplified Payment Verification nature of the wallet, services requiring Masternode communications, such as DarkSend and InstantX are not available.
 
@@ -8,10 +8,10 @@ Homepage: https://sibcoin.money
 
 1. Download the .dmg from https://sibcoin.money
 2. Open .dmg in Finder
-3. Double Click Electrum-SIB.pkg
-4. Follow instructions to install Electrum-SIB
+3. Double Click Electrum-Sibcoin.pkg
+4. Follow instructions to install Electrum-Sibcoin
 
-Electrum-SIB will be installed by default to /Applications
+Electrum-Sibcoin will be installed by default to /Applications
 
 Your Wallets will be stored in /Users/YOUR_LOGIN_NAME/.electrum-sib/wallets
 

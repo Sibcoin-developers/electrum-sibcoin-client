@@ -68,7 +68,7 @@ class InstallWizard(QDialog, MessageBoxMixin, WizardBase):
 
     def __init__(self, config, app, plugins):
         QDialog.__init__(self, None)
-        self.setWindowTitle('Electrum-SIB  -  ' + _('Install Wizard'))
+        self.setWindowTitle('Electrum-Sibcoin  -  ' + _('Install Wizard'))
         self.app = app
         self.config = config
         # Set for base base class

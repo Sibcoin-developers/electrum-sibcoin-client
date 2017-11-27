@@ -3,6 +3,7 @@
 # A simple script that connects to a server and displays block headers
 
 import time
+import sys
 from electrum_sib import SimpleConfig, Network
 from electrum_sib.util import print_msg, json_encode
 
