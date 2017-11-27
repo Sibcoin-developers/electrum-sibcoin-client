@@ -7,7 +7,6 @@ dnspython
 jsonrpclib
 trezor
 git+https://github.com/ivansib/x11_gost_hash
-git+https://github.com/ivansib/x11_gost_hash
 git+https://github.com/trezor/python-trezor@v0.6.13#egg=trezor
 git+https://github.com/keepkey/python-keepkey@v0.7.2#egg=keepkey
 git+https://github.com/LedgerHQ/btchip-python.git@v0.1.17#egg=btchip

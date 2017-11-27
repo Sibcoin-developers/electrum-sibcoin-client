@@ -82,7 +82,7 @@ setup(
     },
     scripts=['electrum-sibcoin'],
     data_files=data_files,
-    description="Lightweight Sibcoinpay Wallet",
+    description="Lightweight Sibcoin Wallet",
     author="serbernar",
     license="MIT License",
     url="https://sibcoin.money",
